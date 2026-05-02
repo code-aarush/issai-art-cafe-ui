@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISAI - The Art Café</title>
+    <title>ISAI - The Art Café | Home</title>
     <meta name="description" content="A vibrant art cafe in Palavakkam, Chennai. Where Creativity Meets Comfort.">
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@600&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -20,72 +23,38 @@
     <div class="texture-overlay" aria-hidden="true"></div>
 
     <div class="page-wrapper fade-in-scale">
-        <!-- Header & Hero -->
-        <header class="hero" id="home">
-            <nav class="navbar">
-                <div class="logo-placeholder">isai</div>
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#menu">Menu</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
+        <!-- Injected Navbar -->
+        <div id="navbar-container"></div>
+
+        <!-- Hero Section -->
+        <header class="hero" id="home" style="background-image: linear-gradient(rgba(44, 44, 44, 0.4), rgba(44, 44, 44, 0.6)), url('assets/images/hero_bg.png');">
             <div class="hero-content">
                 <h1>Where Creativity <br> Meets <span class="italic-accent">Comfort</span></h1>
                 <p>A vibrant art cafe in Palavakkam, Chennai.</p>
                 <div class="cta-group">
-                    <a href="#menu" class="btn btn-primary">View Menu</a>
-                    <a href="#contact" class="btn btn-secondary">See Upcoming Workshops</a>
+                    <a href="menu.html" class="btn btn-primary">Explore Menu</a>
+                    <a href="booking.html" class="btn btn-secondary" style="color: var(--white); border-color: var(--white);">Book a Table</a>
                 </div>
             </div>
         </header>
 
         <main>
-            <!-- The Experience -->
-            <section id="about" class="experience-section">
-                <div class="section-container">
-                    <h2 class="section-title">The <span class="italic-accent">Experience</span></h2>
-                    <p class="about-copy">Nestled in the heart of the city, we're a cozy haven for artists and art
-                        enthusiasts alike. Savor our coffee and delectable food amidst an inspiring ambiance adorned
-                        with local artworks.</p>
-
-                    <div class="features-grid">
-                        <article class="feature-card">
-                            <span class="feature-icon" aria-hidden="true">🎨</span>
-                            <h3>Gallery Exhibitions</h3>
-                            <p>Showcasing vibrant works from local talents.</p>
-                        </article>
-                        <article class="feature-card">
-                            <span class="feature-icon" aria-hidden="true">🎸</span>
-                            <h3>Live Music</h3>
-                            <p>Soulful tunes to accompany your evening.</p>
-                        </article>
-                        <article class="feature-card">
-                            <span class="feature-icon" aria-hidden="true">🛠️</span>
-                            <h3>Interactive Workshops</h3>
-                            <p>Unleash your creativity in our guided sessions.</p>
-                        </article>
-                    </div>
+            <!-- Highlight/Snippet of The Experience -->
+            <section class="experience-snippet">
+                <div class="section-container text-center">
+                    <h2 class="section-title">More Than Just <span class="italic-accent">Coffee</span></h2>
+                    <p class="about-copy">Nestled in the heart of the city, we're a cozy haven for artists and art enthusiasts alike. Savor our coffee and delectable food amidst an inspiring ambiance adorned with local artworks.</p>
+                    <a href="about.html" class="btn btn-outline">Read Our Story</a>
                 </div>
             </section>
 
-            <!-- Dynamic Menu -->
-            <section id="menu" class="menu-section">
-                <div class="section-container">
-                    <h2 class="section-title">Our <span class="italic-accent">Menu</span></h2>
-                    <div id="menu-grid">
-                        <!-- Menu items will be injected here via JavaScript -->
-                    </div>
-                </div>
-            </section>
-
-            <!-- Social Proof -->
-            <section id="reviews" class="reviews-section">
+            <!-- Social Proof / Reviews -->
+            <section class="reviews-section bg-cream">
                 <div class="section-container">
                     <div class="rating-header">
                         <span class="stars" aria-hidden="true">★★★★★</span>
                         <h2>4.8/5 Rating</h2>
-                        <p>from 115 Google Reviews</p>
+                        <p>from 115+ Google Reviews</p>
                     </div>
 
                     <div class="reviews-grid">
@@ -102,49 +71,8 @@
             </section>
         </main>
 
-        <!-- Footer -->
-        <footer id="contact" class="footer">
-            <div class="footer-container">
-                <div class="footer-details">
-                    <h2 class="footer-logo">isai</h2>
-                    <address>
-                        <p>4/408, Anna Salai Rd,<br> Palavakkam, Chennai,<br> Tamil Nadu 600041</p>
-                        <p class="hours">Hours: Opens 5 PM</p>
-                        <p><a href="tel:+919677011694" class="phone-link">+91 96770 11694</a></p>
-                    </address>
-                </div>
-
-                <div class="footer-form">
-                    <h3>Inquire about Events</h3>
-                    <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="3" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Inquiry</button>
-                    </form>
-                </div>
-
-                <div class="footer-map">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5833895475654!2d80.2528!3d12.9567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d1234567890%3A0x1234567890abcdef!2s4%2F408%2C%20Anna%20Salai%20Rd%2C%20Palavakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600041!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade" title="Google Maps Location of ISAI Art Cafe">
-                    </iframe>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="current-year"></span> ISAI - The Art Café. All rights reserved.</p>
-            </div>
-        </footer>
+        <!-- Injected Footer -->
+        <div id="footer-container"></div>
     </div>
 
     <script src="script.js"></script>

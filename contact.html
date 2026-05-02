@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | ISAI - The Art Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="texture-overlay" aria-hidden="true"></div>
+
+    <div class="page-wrapper fade-in-scale">
+        <div id="navbar-container"></div>
+
+        <main class="page-content">
+            <section class="contact-section">
+                <div class="section-container">
+                    <div class="text-center mb-xl">
+                        <h1 class="page-title">Get in <span class="italic-accent">Touch</span></h1>
+                        <p class="subtitle text-subtle">We'd love to hear from you. Drop by or send us a message.</p>
+                    </div>
+
+                    <div class="contact-grid">
+                        <div class="contact-info-card">
+                            <h3><i class="fa-solid fa-location-dot"></i> Visit Us</h3>
+                            <p>4/408, Anna Salai Rd,<br> Palavakkam, Chennai,<br> Tamil Nadu 600041</p>
+                            
+                            <h3 class="mt-md"><i class="fa-solid fa-clock"></i> Hours</h3>
+                            <p>Everyday: Opens 5 PM</p>
+                            
+                            <h3 class="mt-md"><i class="fa-solid fa-phone"></i> Call Us</h3>
+                            <p><a href="tel:+919677011694" class="contact-link">+91 96770 11694</a></p>
+
+                            <div class="whatsapp-cta mt-lg">
+                                <a href="https://wa.me/919677011694" target="_blank" class="btn btn-whatsapp">
+                                    <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="contact-form-wrapper">
+                            <h3>Send a Message</h3>
+                            <form action="#" method="POST" class="contact-form">
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" id="name" name="name" required placeholder="Your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" required placeholder="Your email address">
+                                </div>
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" required placeholder="What is this regarding?">
+                                </div>
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" required placeholder="Type your message here..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
