@@ -124,8 +124,52 @@ img, iframe {
     100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
+@keyframes fadeOutScale {
+    0% { opacity: 1; transform: scale(1) translateY(0); }
+    100% { opacity: 0; transform: scale(0.98) translateY(-10px); }
+}
+
 .fade-in-scale {
-    animation: fadeInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: fadeInScale 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.fade-out-scale {
+    animation: fadeOutScale 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ==========================================================================
+   PAGE TRANSITION OVERLAY
+   ========================================================================== */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--bg-cream);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    pointer-events: none; /* Prevents blocking clicks when invisible */
+    transition: opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.transition-overlay.hidden {
+    opacity: 0;
+}
+
+.transition-overlay .lg-logo {
+    font-size: 5rem;
+    padding: 20px 40px;
+    animation: pulseLogo 1.5s infinite ease-in-out;
+}
+
+@keyframes pulseLogo {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
 }
 
 /* Container */
@@ -902,6 +946,95 @@ img, iframe {
     .half-width {
         width: 50%;
     }
+}
+
+/* ==========================================================================
+   WIDGET (FAB)
+   ========================================================================== */
+.corner-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 9999;
+}
+
+.widget-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    transition: var(--transition-smooth);
+    text-decoration: none;
+}
+
+.widget-btn.whatsapp {
+    color: #25D366;
+}
+
+.widget-btn.phone {
+    color: #3b5998;
+}
+
+.widget-btn:hover {
+    transform: scale(1.1) translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+/* ==========================================================================
+   FAQ SECTION
+   ========================================================================== */
+.faq-section {
+    padding: var(--spacing-lg) 0 var(--spacing-xl);
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--white);
+    margin-bottom: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    border: 1px solid rgba(0,0,0,0.03);
+    overflow: hidden;
+}
+
+.faq-question {
+    padding: var(--spacing-md);
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--brand-primary);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: var(--transition-smooth);
+}
+
+.faq-question:hover {
+    background-color: var(--bg-cream);
+}
+
+.faq-answer {
+    padding: 0 var(--spacing-md) var(--spacing-md);
+    color: var(--text-subtle);
+    font-size: 1.1rem;
+    display: none;
+}
+
+.faq-item.active .faq-answer {
+    display: block;
 }
 
 @media (min-width: 1024px) {

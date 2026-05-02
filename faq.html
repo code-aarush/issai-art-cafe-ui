@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | ISAI - The Art Café</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Quicksand:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="texture-overlay" aria-hidden="true"></div>
+
+    <div class="page-wrapper fade-in-scale">
+        <div id="navbar-container"></div>
+
+        <main class="page-content">
+            <section class="faq-section bg-cream">
+                <div class="section-container">
+                    <div class="text-center mb-xl">
+                        <h1 class="page-title">Frequently Asked <span class="italic-accent">Questions</span></h1>
+                        <p class="subtitle text-subtle">Everything you need to know about ISAI Art Cafe.</p>
+                    </div>
+
+                    <div class="faq-container">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                What are your opening hours?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                We are open everyday starting from 5:00 PM until 11:00 PM. We recommend booking a slot in advance for weekends!
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Do you have vegan or gluten-free options?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Yes! While our signature dishes include meat and dairy, we offer several delicious vegan and gluten-free alternatives upon request. Just ask your server.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Can I host a private event or workshop here?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Absolutely! ISAI is the perfect venue for creative workshops, intimate gatherings, and acoustic sessions. Please contact us via WhatsApp or our Contact page to discuss your event.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Is there parking available?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                We have limited parking right in front of the cafe, but there is plenty of street parking available on Anna Salai Road in Palavakkam.
+                            </div>
+                        </div>
+
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                Are pets allowed?
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                            <div class="faq-answer">
+                                Yes, we are a pet-friendly cafe! We just ask that your furry friends remain well-behaved and stay in the designated outdoor/patio seating areas.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <div id="footer-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple script for FAQ accordion functionality
+        document.addEventListener('DOMContentLoaded', () => {
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                question.addEventListener('click', () => {
+                    // Toggle the active class on the clicked item
+                    const isActive = item.classList.contains('active');
+                    
+                    // Close all items (optional: if you want only one open at a time)
+                    faqItems.forEach(i => {
+                        i.classList.remove('active');
+                        i.querySelector('.fa-chevron-down').style.transform = 'rotate(0deg)';
+                    });
+                    
+                    // Open the clicked item if it wasn't already active
+                    if (!isActive) {
+                        item.classList.add('active');
+                        item.querySelector('.fa-chevron-down').style.transform = 'rotate(180deg)';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

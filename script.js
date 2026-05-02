@@ -24,6 +24,7 @@ function loadSharedComponents() {
                     <li><a href="about.html">Our Story</a></li>
                     <li><a href="menu.html">Menu</a></li>
                     <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
                     <li><a href="contact.html">Contact Us</a></li>
                 </ul>
                 <a href="booking.html" class="btn btn-primary nav-cta">Make Appointment</a>
@@ -63,6 +64,7 @@ function loadSharedComponents() {
                             <li><a href="about.html">Our Story</a></li>
                             <li><a href="menu.html">Menu</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
+                            <li><a href="faq.html">FAQ</a></li>
                             <li><a href="booking.html">Book a Slot</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                         </ul>
@@ -89,6 +91,80 @@ function loadSharedComponents() {
             </footer>
         `;
     }
+
+    // Inject Corner Widget
+    if (!document.getElementById('corner-widget')) {
+        const widget = document.createElement('div');
+        widget.id = 'corner-widget';
+        widget.className = 'corner-widget';
+        widget.innerHTML = `
+            <a href="https://wa.me/919677011694" target="_blank" class="widget-btn whatsapp" aria-label="Chat on WhatsApp">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
+            <a href="tel:+919677011694" class="widget-btn phone" aria-label="Call Us">
+                <i class="fa-solid fa-phone"></i>
+            </a>
+        `;
+        document.body.appendChild(widget);
+    }
+
+    // Inject Transition Overlay
+    let overlay = document.getElementById('transition-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'transition-overlay';
+        overlay.className = 'transition-overlay';
+        overlay.innerHTML = `
+            <div class="logo-placeholder lg-logo">isai</div>
+        `;
+        document.body.appendChild(overlay);
+    }
+
+    // Fade out overlay on load
+    requestAnimationFrame(() => {
+        setTimeout(() => {
+            overlay.classList.add('hidden');
+        }, 50); // slight delay to ensure it renders first
+    });
+
+    // Initialize Page Transitions
+    setupPageTransitions(overlay);
+}
+
+function setupPageTransitions(overlay) {
+    const links = document.querySelectorAll('a[href]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetUrl = this.getAttribute('href');
+            const targetOrigin = this.origin || (new URL(this.href, window.location.href)).origin;
+            
+            // Only transition for internal links that aren't anchors or new tabs
+            if (
+                targetUrl && 
+                !targetUrl.startsWith('#') && 
+                !targetUrl.startsWith('tel:') && 
+                !targetUrl.startsWith('mailto:') && 
+                this.target !== '_blank' &&
+                targetOrigin === window.location.origin
+            ) {
+                e.preventDefault();
+                const wrapper = document.querySelector('.page-wrapper');
+                
+                if (wrapper && overlay) {
+                    // Show the overlay (fade in)
+                    overlay.classList.remove('hidden');
+                    
+                    // Wait for overlay to fade in before navigating
+                    setTimeout(() => {
+                        window.location.href = targetUrl;
+                    }, 400); // Matches the 0.4s CSS transition duration
+                } else {
+                    window.location.href = targetUrl;
+                }
+            }
+        });
+    });
 }
 
 function loadMenu() {
