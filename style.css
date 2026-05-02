@@ -212,9 +212,10 @@ img, iframe {
     justify-content: space-between;
     align-items: center;
     padding: var(--spacing-sm) 5%;
-    background-color: rgba(253, 249, 245, 0.95);
-    backdrop-filter: blur(10px);
+    background-color: rgba(253, 249, 245, 0.98);
+    backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -535,11 +536,12 @@ img, iframe {
 }
 
 /* ==========================================================================
-   REVIEWS
+   REVIEWS (MARQUEE)
    ========================================================================== */
 .reviews-section {
     padding: var(--spacing-xl) 0;
     text-align: center;
+    overflow: hidden;
 }
 
 .rating-header {
@@ -557,12 +559,48 @@ img, iframe {
     margin: var(--spacing-xs) 0;
 }
 
-.reviews-grid {
-    display: grid;
-    grid-template-columns: 1fr;
+.reviews-marquee {
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    position: relative;
+    padding: var(--spacing-sm) 0 var(--spacing-lg);
+}
+
+.reviews-marquee::before,
+.reviews-marquee::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.reviews-marquee::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-cream), transparent);
+}
+
+.reviews-marquee::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-cream), transparent);
+}
+
+.reviews-marquee-content {
+    display: inline-flex;
     gap: var(--spacing-md);
-    max-width: 900px;
-    margin: 0 auto;
+    animation: scroll-marquee 35s linear infinite;
+}
+
+.reviews-marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - (var(--spacing-md) / 2))); }
 }
 
 .review-card {
@@ -571,6 +609,17 @@ img, iframe {
     border-radius: var(--radius-lg);
     position: relative;
     border: 1px solid rgba(0,0,0,0.03);
+    min-width: 350px;
+    max-width: 400px;
+    white-space: normal;
+    text-align: left;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+    transition: var(--transition-smooth);
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(200, 122, 101, 0.1);
 }
 
 .review-card::before {
@@ -762,6 +811,32 @@ img, iframe {
     padding-left: 5px;
 }
 
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 1.2rem;
+    transition: var(--transition-smooth);
+}
+
+.social-icons a:hover {
+    background-color: var(--brand-accent);
+    color: var(--text-main);
+    transform: translateY(-3px);
+    padding-left: 0; /* Override generic link hover */
+}
+
 .footer-bottom {
     text-align: center;
     padding-top: var(--spacing-md);
@@ -814,9 +889,7 @@ img, iframe {
         column-count: 2;
     }
 
-    .reviews-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    /* We don't need grid for reviews-marquee, but keep it for masonry */
     
     .contact-grid {
         grid-template-columns: 1fr 2fr;

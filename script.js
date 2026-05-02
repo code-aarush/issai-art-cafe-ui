@@ -51,9 +51,9 @@ function loadSharedComponents() {
                         <p class="footer-tagline">Where Creativity Meets Comfort.</p>
                         <address>
                             <p>4/408, Anna Salai Rd,<br> Palavakkam, Chennai,<br> Tamil Nadu 600041</p>
-                            <p class="hours">Hours: Opens 5 PM</p>
-                            <p><a href="tel:+919677011694" class="phone-link">+91 96770 11694</a></p>
-                            <p><a href="https://wa.me/919677011694" class="whatsapp-link" target="_blank">Chat on WhatsApp</a></p>
+                            <p class="hours mt-sm"><strong>Hours:</strong> Everyday from 5 PM</p>
+                            <p class="mt-sm"><a href="tel:+919677011694" class="phone-link"><i class="fa-solid fa-phone"></i> +91 96770 11694</a></p>
+                            <p><a href="https://wa.me/919677011694" class="whatsapp-link" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></p>
                         </address>
                     </div>
 
@@ -62,16 +62,23 @@ function loadSharedComponents() {
                         <ul>
                             <li><a href="about.html">Our Story</a></li>
                             <li><a href="menu.html">Menu</a></li>
-                            <li><a href="gallery.html">Instagrammable Moments</a></li>
+                            <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="booking.html">Book a Slot</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                         </ul>
+
+                        <h3 class="mt-md">Follow Us</h3>
+                        <div class="social-icons">
+                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        </div>
                     </div>
 
                     <div class="footer-map">
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5833895475654!2d80.2528!3d12.9567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d1234567890%3A0x1234567890abcdef!2s4%2F408%2C%20Anna%20Salai%20Rd%2C%20Palavakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600041!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                            width="100%" height="200" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
+                            width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade" title="Google Maps Location of ISAI Art Cafe">
                         </iframe>
                     </div>
