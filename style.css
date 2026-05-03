@@ -932,7 +932,9 @@ iframe {
     color: var(--bg-cream);
     font-size: 1.2rem;
     margin-bottom: 5px;
-    font-weight: 500;
+    font-weight: bold;
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .footer-address-italic {
@@ -972,12 +974,15 @@ iframe {
     font-size: 0.85rem;
 }
 
-.phone-btn, .whatsapp-btn {
-    background-color: #797148; /* Olive green from design */
+.phone-btn,
+.whatsapp-btn {
+    background-color: #797148;
+    /* Olive green from design */
     color: var(--bg-cream);
 }
 
-.phone-btn:hover, .whatsapp-btn:hover {
+.phone-btn:hover,
+.whatsapp-btn:hover {
     background-color: #605938;
 }
 
@@ -993,9 +998,9 @@ iframe {
 
 .footer-quick-links {
     list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 15px;
 }
 
 .footer-quick-links a {

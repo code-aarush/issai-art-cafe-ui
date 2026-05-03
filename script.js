@@ -49,7 +49,7 @@ function loadSharedComponents() {
                 <div class="footer-top">
                     <div class="footer-logo-container">
                         <a href="index.html" class="footer-logo-new">isai</a>
-                        <p class="footer-logo-sub">The Art Café</p>
+                        <p class="footer-logo-sub">The Art Café</p><br>
                     </div>
                 </div>
                 <div class="footer-container">
