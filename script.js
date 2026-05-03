@@ -5,7 +5,7 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     loadSharedComponents();
-    
+
     // Check if we are on the menu page before loading menu data
     if (document.getElementById('menu-grid')) {
         loadMenu();
@@ -30,7 +30,7 @@ function loadSharedComponents() {
                 <a href="booking.html" class="btn btn-primary nav-cta">Make Appointment</a>
             </nav>
         `;
-        
+
         // Highlight active link
         const currentPage = window.location.pathname.split('/').pop() || 'index.html';
         const navLinks = navbarContainer.querySelectorAll('.nav-links a');
@@ -46,46 +46,64 @@ function loadSharedComponents() {
     if (footerContainer) {
         footerContainer.innerHTML = `
             <footer class="footer">
+                <div class="footer-top">
+                    <div class="footer-logo-container">
+                        <a href="index.html" class="footer-logo-new">isai</a>
+                        <p class="footer-logo-sub">The Art Café</p>
+                    </div>
+                </div>
                 <div class="footer-container">
-                    <div class="footer-details">
-                        <a href="index.html" class="footer-logo">isai</a>
-                        <p class="footer-tagline">Where Creativity Meets Comfort.</p>
+                    <div class="footer-col">
+                        <h3>Address</h3>
+                        <p class="footer-address-italic">Where Creativity Meets Comfort.</p>
                         <address>
                             <p>4/408, Anna Salai Rd,<br> Palavakkam, Chennai,<br> Tamil Nadu 600041</p>
-                            <p class="hours mt-sm"><strong>Hours:</strong> Everyday from 5 PM</p>
-                            <p class="mt-sm"><a href="tel:+919677011694" class="phone-link"><i class="fa-solid fa-phone"></i> +91 96770 11694</a></p>
-                            <p><a href="https://wa.me/919677011694" class="whatsapp-link" target="_blank"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></p>
                         </address>
                     </div>
 
-                    <div class="footer-links">
+                    <div class="footer-col">
+                        <h3>Contact Us & CTAs</h3>
+                        <p class="footer-hours"><strong>Hours:</strong> Everyday from 5 PM</p>
+                        <div class="footer-buttons">
+                            <a href="tel:+919677011694" class="btn-footer phone-btn"><i class="fa-solid fa-phone"></i> +91 96770 11694</a>
+                            <a href="https://wa.me/919677011694" class="btn-footer whatsapp-btn" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
                         <h3>Quick Links</h3>
-                        <ul>
+                        <ul class="footer-quick-links">
                             <li><a href="about.html">Our Story</a></li>
                             <li><a href="menu.html">Menu</a></li>
+                            <li><a href="#">Events</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="faq.html">FAQ</a></li>
                             <li><a href="booking.html">Book a Slot</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                         </ul>
-
-                        <h3 class="mt-md">Follow Us</h3>
-                        <div class="social-icons">
-                            <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                            <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                            <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-                        </div>
                     </div>
 
-                    <div class="footer-map">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5833895475654!2d80.2528!3d12.9567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d1234567890%3A0x1234567890abcdef!2s4%2F408%2C%20Anna%20Salai%20Rd%2C%20Palavakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600041!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
-                            width="100%" height="250" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade" title="Google Maps Location of ISAI Art Cafe">
-                        </iframe>
+                    <div class="footer-col">
+                        <h3>The Map</h3>
+                        <div class="footer-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.5833895475654!2d80.2528!3d12.9567!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d1234567890%3A0x1234567890abcdef!2s4%2F408%2C%20Anna%20Salai%20Rd%2C%20Palavakkam%2C%20Chennai%2C%20Tamil%20Nadu%20600041!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                                width="100%" height="160" style="border:0; border-radius: 12px;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade" title="Google Maps Location of ISAI Art Cafe">
+                            </iframe>
+                            <div class="map-btn-container">
+                                <a href="https://goo.gl/maps/..." target="_blank" class="btn-footer map-btn">Get Directions</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="footer-bottom">
+                    <div class="social-icons">
+                        <a href="https://instagram.com" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://youtube.com" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://tiktok.com" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
                     <p>&copy; <span id="current-year">${new Date().getFullYear()}</span> ISAI - The Art Café. All rights reserved.</p>
                 </div>
             </footer>
@@ -133,28 +151,28 @@ function loadSharedComponents() {
 
 function setupPageTransitions(overlay) {
     const links = document.querySelectorAll('a[href]');
-    
+
     links.forEach(link => {
-        link.addEventListener('click', function(e) {
+        link.addEventListener('click', function (e) {
             const targetUrl = this.getAttribute('href');
             const targetOrigin = this.origin || (new URL(this.href, window.location.href)).origin;
-            
+
             // Only transition for internal links that aren't anchors or new tabs
             if (
-                targetUrl && 
-                !targetUrl.startsWith('#') && 
-                !targetUrl.startsWith('tel:') && 
-                !targetUrl.startsWith('mailto:') && 
+                targetUrl &&
+                !targetUrl.startsWith('#') &&
+                !targetUrl.startsWith('tel:') &&
+                !targetUrl.startsWith('mailto:') &&
                 this.target !== '_blank' &&
                 targetOrigin === window.location.origin
             ) {
                 e.preventDefault();
                 const wrapper = document.querySelector('.page-wrapper');
-                
+
                 if (wrapper && overlay) {
                     // Show the overlay (fade in)
                     overlay.classList.remove('hidden');
-                    
+
                     // Wait for overlay to fade in before navigating
                     setTimeout(() => {
                         window.location.href = targetUrl;
@@ -192,7 +210,7 @@ function loadMenu() {
     for (const [category, items] of Object.entries(menuData)) {
         const categorySection = document.createElement('div');
         categorySection.className = 'menu-category fade-in-scale';
-        
+
         const categoryTitle = document.createElement('h3');
         categoryTitle.className = 'menu-category-title';
         categoryTitle.textContent = category;
@@ -204,39 +222,39 @@ function loadMenu() {
         items.forEach(item => {
             const itemCard = document.createElement('div');
             itemCard.className = 'aesthetic-menu-item';
-            
+
             // Image container
             const imgContainer = document.createElement('div');
             imgContainer.className = 'menu-item-image';
             imgContainer.style.backgroundImage = `url('${item.img}')`;
-            
+
             // Details container
             const detailsDiv = document.createElement('div');
             detailsDiv.className = 'item-details';
-            
+
             const headerDiv = document.createElement('div');
             headerDiv.className = 'item-header';
-            
+
             const itemName = document.createElement('h4');
             itemName.textContent = item.name;
-            
+
             const itemPrice = document.createElement('div');
             itemPrice.className = 'item-price';
             itemPrice.textContent = `₹${item.price}`;
-            
+
             headerDiv.appendChild(itemName);
             headerDiv.appendChild(itemPrice);
-            
+
             const itemDesc = document.createElement('p');
             itemDesc.className = 'item-desc';
             itemDesc.textContent = item.desc;
-            
+
             detailsDiv.appendChild(headerDiv);
             detailsDiv.appendChild(itemDesc);
 
             itemCard.appendChild(imgContainer);
             itemCard.appendChild(detailsDiv);
-            
+
             itemsContainer.appendChild(itemCard);
         });
 
