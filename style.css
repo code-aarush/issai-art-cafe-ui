@@ -1132,27 +1132,22 @@ iframe {
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: var(--white);
+    background-color: var(--brand-primary);
+    color: var(--white);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.8rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 15px rgba(200, 122, 101, 0.3);
     transition: var(--transition-smooth);
     text-decoration: none;
 }
 
-.widget-btn.whatsapp {
-    color: #25D366;
-}
-
-.widget-btn.phone {
-    color: #3b5998;
-}
-
 .widget-btn:hover {
     transform: scale(1.1) translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 25px rgba(200, 122, 101, 0.5);
+    background-color: var(--text-main);
+    color: var(--white);
 }
 
 /* ==========================================================================
