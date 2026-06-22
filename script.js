@@ -185,80 +185,132 @@ function setupPageTransitions(overlay) {
     });
 }
 
-function loadMenu() {
-    const menuData = {
-        "Appetizers": [
-            { name: "Garlic Bread", price: 130, desc: "Toasted bread infused with garlic, butter, and parsley.", img: "assets/images/garlic_bread.png" },
-            { name: "Cheesy Garlic Bread", price: 150, desc: "Toasted bread with shredded mozzarella, garlic, and herbs.", img: "assets/images/cheesy_garlic_bread.png" },
-            { name: "Pan Fried Mushrooms", price: 180, desc: "A medley of button & bell peppers with sautéed mushrooms.", img: "assets/images/pan_fried_mushrooms.png" },
-            { name: "Pan Fried Tenders", price: 300, desc: "Deep-fried chicken tenders tossed with onions, capsicum & spices.", img: "assets/images/pan_fried_tenders.png" }
-        ],
-        "All Day Breakfast": [
-            { name: "The English Breakfast", price: 400, desc: "A medley of bacon, chicken sausages, eggs, veggies, hash brown, toast & multi-dips.", img: "assets/images/english_breakfast.png" },
-            { name: "French Toast", price: 200, desc: "Fluffy buttery egg soaked bread toasted to perfection w/ honey.", img: "assets/images/french_toast.png" },
-            { name: "Poha", price: 180, desc: "Flattened rice cooked with onions, peanuts & raw spices.", img: "assets/images/poha.png" }
-        ],
-        "Isai's Originals": [
-            { name: "Egg Wrapped Ramen", price: 220, desc: "Spicy garlic ramen wrapped in a fluffy omelette.", img: "assets/images/egg_wrapped_ramen.png" },
-            { name: "Semi-Fried Momos", price: "180/200", desc: "Veg/Chicken momos pan-fried with onions, capsicum and sauces.", img: "assets/images/semi_fried_momos.png" },
-            { name: "The Bacon Special", price: 300, desc: "Crispy bacon, veggies, cheese in bread grilled to perfection.", img: "assets/images/bacon_special.png" }
-        ]
-    };
-
+async function loadMenu() {
     const menuGrid = document.getElementById('menu-grid');
+    if (!menuGrid) return; // Safety check
 
-    for (const [category, items] of Object.entries(menuData)) {
-        const categorySection = document.createElement('div');
-        categorySection.className = 'menu-category fade-in-scale';
+    // Clear the grid in case this function runs twice
+    menuGrid.innerHTML = '';
 
-        const categoryTitle = document.createElement('h3');
-        categoryTitle.className = 'menu-category-title';
-        categoryTitle.textContent = category;
-        categorySection.appendChild(categoryTitle);
+    // 1. URL and Helper Function
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQJS5u6bzuYnY3t9v2OD1FPYqp89b2yQxIuiJv5sHWFeF12pmyl9LrWz-wV9h0361ma6kTWu6KHoZ3F/pub?output=csv';
 
-        const itemsContainer = document.createElement('div');
-        itemsContainer.className = 'menu-items';
+    // Ensures commas inside your descriptions don't break the columns
+    function parseCSVLine(line) {
+        const result = [];
+        let current = '';
+        let insideQuotes = false;
+        for (let i = 0; i < line.length; i++) {
+            const char = line[i];
+            if (char === '"') insideQuotes = !insideQuotes;
+            else if (char === ',' && !insideQuotes) { result.push(current.trim()); current = ''; }
+            else current += char;
+        }
+        result.push(current.trim());
+        return result;
+    }
 
-        items.forEach(item => {
-            const itemCard = document.createElement('div');
-            itemCard.className = 'aesthetic-menu-item';
+    try {
+        // 2. Fetch and Parse the Data
+        const response = await fetch(csvUrl);
+        if (!response.ok) throw new Error("Failed to fetch menu CSV");
+        const csvText = await response.text();
 
-            // Image container
-            const imgContainer = document.createElement('div');
-            imgContainer.className = 'menu-item-image';
-            imgContainer.style.backgroundImage = `url('${item.img}')`;
+        const rows = csvText.split(/\r?\n/);
 
-            // Details container
-            const detailsDiv = document.createElement('div');
-            detailsDiv.className = 'item-details';
+        // 3. Structure the Data into your desired menuData object
+        const menuData = rows.slice(1).reduce((acc, row) => {
+            if (!row.trim()) return acc;
+            const cols = parseCSVLine(row);
+            if (cols.length < 5) return acc;
 
-            const headerDiv = document.createElement('div');
-            headerDiv.className = 'item-header';
+            const category = cols[0].replace(/^"|"$/g, '').trim();
+            const name = cols[1].replace(/^"|"$/g, '').trim();
+            const desc = cols[2].replace(/^"|"$/g, '').trim();
+            const price = cols[3].replace(/^"|"$/g, '').trim();
+            let img = cols[4] ? cols[4].replace(/^"|"$/g, '').trim() : '';
 
-            const itemName = document.createElement('h4');
-            itemName.textContent = item.name;
+            // Ignore rows that don't have a category or name
+            if (!category || !name) return acc;
 
-            const itemPrice = document.createElement('div');
-            itemPrice.className = 'item-price';
-            itemPrice.textContent = `₹${item.price}`;
+            // --- THE GOOGLE DRIVE THUMBNAIL FIX YOU REQUESTED ---
+            if (img && img.includes('drive.google.com')) {
+                const fileIdMatch = img.match(/[-\w]{25,}/);
+                if (fileIdMatch) {
+                    img = `https://drive.google.com/thumbnail?id=${fileIdMatch[0]}&sz=s800`;
+                }
+            }
 
-            headerDiv.appendChild(itemName);
-            headerDiv.appendChild(itemPrice);
+            // Create category ONLY if it doesn't exist, then push item
+            (acc[category] = acc[category] || []).push({ name, price, desc, img });
+            return acc;
+        }, {});
 
-            const itemDesc = document.createElement('p');
-            itemDesc.className = 'item-desc';
-            itemDesc.textContent = item.desc;
+        // 4. INJECT YOUR DOM LOGIC
+        for (const [category, items] of Object.entries(menuData)) {
+            const categorySection = document.createElement('div');
+            categorySection.className = 'menu-category fade-in-scale';
 
-            detailsDiv.appendChild(headerDiv);
-            detailsDiv.appendChild(itemDesc);
+            const categoryTitle = document.createElement('h3');
+            categoryTitle.className = 'menu-category-title';
+            categoryTitle.textContent = category;
+            categorySection.appendChild(categoryTitle);
 
-            itemCard.appendChild(imgContainer);
-            itemCard.appendChild(detailsDiv);
+            const itemsContainer = document.createElement('div');
+            itemsContainer.className = 'menu-items';
 
-            itemsContainer.appendChild(itemCard);
-        });
+            items.forEach(item => {
+                const itemCard = document.createElement('div');
+                itemCard.className = 'aesthetic-menu-item';
 
-        categorySection.appendChild(itemsContainer);
-        menuGrid.appendChild(categorySection);
+                // Image container
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'menu-item-image';
+
+                // Fallback handling: If img is blank, use a placeholder
+                const finalImgUrl = item.img ? item.img : 'https://placehold.co/500x400/efebe6/4a3c31?text=No+Image';
+                imgContainer.style.backgroundImage = `url('${finalImgUrl}')`;
+
+                // Add essential background styles to ensure it renders well
+                imgContainer.style.backgroundSize = 'cover';
+                imgContainer.style.backgroundPosition = 'center';
+
+                // Details container
+                const detailsDiv = document.createElement('div');
+                detailsDiv.className = 'item-details';
+
+                const headerDiv = document.createElement('div');
+                headerDiv.className = 'item-header';
+
+                const itemName = document.createElement('h4');
+                itemName.textContent = item.name;
+
+                const itemPrice = document.createElement('div');
+                itemPrice.className = 'item-price';
+                itemPrice.textContent = `${item.price}`;
+
+                headerDiv.appendChild(itemName);
+                headerDiv.appendChild(itemPrice);
+
+                const itemDesc = document.createElement('p');
+                itemDesc.className = 'item-desc';
+                itemDesc.textContent = item.desc;
+
+                detailsDiv.appendChild(headerDiv);
+                detailsDiv.appendChild(itemDesc);
+
+                itemCard.appendChild(imgContainer);
+                itemCard.appendChild(detailsDiv);
+
+                itemsContainer.appendChild(itemCard);
+            });
+
+            categorySection.appendChild(itemsContainer);
+            menuGrid.appendChild(categorySection);
+        }
+
+    } catch (error) {
+        console.error("Error loading menu:", error);
+        menuGrid.innerHTML = '<p class="error-msg text-center" style="grid-column: 1/-1;">Unable to load menu. Please check your internet connection.</p>';
     }
 }
