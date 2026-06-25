@@ -19,15 +19,26 @@ function loadSharedComponents() {
         navbarContainer.innerHTML = `
             <nav class="navbar">
                 <a href="index.html" class="logo-placeholder">isai<span class="logo-subtext">The ART Café</span></a>
+
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">Our Story</a></li>
                     <li><a href="menu.html">Menu</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="faq.html">FAQ</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    
+                    <!-- New Bookings Dropdown -->
+                    <li class="nav-dropdown">
+                        <a href="#">Bookings ▾</a>
+                        <ul class="dropdown-content">
+                            <li><a href="booking.html">Book a Table</a></li>
+                            <li><a href="host-event.html">Host an Event</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <!-- Moved Gallery, FAQ, and Contact to Footer -->
                 </ul>
-                <a href="booking.html" class="btn btn-primary nav-cta">Make Appointment</a>
+
+                <a href="events.html" class="btn btn-primary nav-cta">Events you can join!</a>
             </nav>
         `;
 
@@ -78,6 +89,7 @@ function loadSharedComponents() {
                             <li><a href="#">Events</a></li>
                             <li><a href="gallery.html">Gallery</a></li>
                             <li><a href="faq.html">FAQ</a></li>
+                            <li><a href="blog.html">Our Blog</a></li>
                             <li><a href="booking.html">Book a Slot</a></li>
                             <li><a href="contact.html">Contact Us</a></li>
                         </ul>

@@ -1259,3 +1259,67 @@ iframe {
         width: 200px;
     }
 }
+
+/* Dropdown Container */
+.nav-dropdown {
+    position: relative;
+}
+
+/* Dropdown Content with Glassmorphism and slide/fade entrance */
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    min-width: 180px;
+    background-color: rgba(253, 249, 245, 0.75); /* Semi-transparent cream matching --bg-cream */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.45); /* Frosted glass border */
+    border-radius: var(--radius-md);
+    padding: 8px; /* Breathing room for list items */
+    box-shadow: 0 10px 30px rgba(62, 39, 35, 0.12); /* Warm coffee shadow */
+    list-style: none;
+    margin-top: 12px;
+    transition: opacity 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1),
+                visibility 0.3s;
+    z-index: 1000;
+}
+
+/* Invisible hover bridge to eliminate the hover-flicker dead zone */
+.dropdown-content::before {
+    content: '';
+    position: absolute;
+    top: -15px; /* Covers the 12px gap + 3px overlap */
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: transparent;
+}
+
+/* Show dropdown on hover with animation trigger */
+.nav-dropdown:hover .dropdown-content {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Premium list items style matching the Artistic & Chill aesthetic */
+.dropdown-content li a {
+    padding: 10px 16px;
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-main);
+    border-radius: calc(var(--radius-md) - 8px); /* Nested radius */
+    transition: var(--transition-smooth);
+}
+
+.dropdown-content li a:hover {
+    background-color: var(--brand-accent-light); /* Soft peach background hover */
+    color: var(--brand-primary); /* Warm terracotta text */
+    transform: translateX(4px); /* Chill slide-in micro-animation */
+}
